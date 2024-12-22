@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة زواج شباب موريتاني</title>
+    <!-- إضافة مكتبة Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f9a8d4, #ffccf9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 380px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 22px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .message {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 14px;
+            margin-top: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            text-align: center;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .input-icon {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #4CAF50;
+        }
+
+        .input-wrapper {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                max-width: 90%;
+            }
+            h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>منصة زواج شباب موريتاني</h1>
+    <form id="registrationForm">
+        <div class="input-wrapper">
+            <label for="fullName">الأسم الكامل</label>
+            <div class="input-icon"><i class="fas fa-user"></i></div>
+            <input type="text" id="fullName" name="fullName" required placeholder="أدخل الأسم الكامل">
+        </div>
+
+        <div class="input-wrapper">
+            <label for="phone">رقم الهاتف</label>
+            <div class="input-icon"><i class="fas fa-phone-alt"></i></div>
+            <input type="tel" id="phone" name="phone" required placeholder="أدخل رقم الهاتف">
+        </div>
+
+        <div class="input-wrapper">
+            <label for="gender">الجنس</label>
+            <div class="input-icon"><i class="fas fa-venus-mars"></i></div>
+            <select id="gender" name="gender" required>
+                <option value="male">ذكر</option>
+                <option value="female">أنثى</option>
+            </select>
+        </div>
+
+        <div class="input-wrapper">
+            <label for="age">العمر</label>
+            <div class="input-icon"><i class="fas fa-calendar-alt"></i></div>
+            <input type="number" id="age" name="age" required placeholder="أدخل العمر">
+        </div>
+
+        <div class="input-wrapper">
+            <label for="location">مكان السكن</label>
+            <div class="input-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <input type="text" id="location" name="location" required placeholder="أدخل مكان السكن">
+        </div>
+
+        <div class="input-wrapper">
+            <label for="description">المواصفات التي تبحث عنها</label>
+            <textarea id="description" name="description" rows="4" required placeholder="أدخل المواصفات التي تبحث عنها"></textarea>
+        </div>
+
+        <button type="submit">إرسال</button>
+    </form>
+</div>
+
+<div id="message" class="message"></div>
+
+<script>
+    const form = document.getElementById('registrationForm');
+    const messageDiv = document.getElementById('message');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const fullName = document.getElementById('fullName').value;
+        const age = parseInt(document.getElementById('age').value);
+        const gender = document.getElementById('gender').value;
+        const phone = document.getElementById('phone').value;
+        const location = document.getElementById('location').value;
+        const description = document.getElementById('description').value;
+
+        let message = '';
+        let userMessage = '';
+
+        if (gender === 'male') {
+            if (age >= 18 && age <= 25) {
+                message = 'يوليدي وحل في راسك بني حياتك وحل في كرايتك مزال عند الوقت ما معجلك شيء على زواج';
+            } else if (age >= 25 && age <= 35) {
+                message = 'أنت يصاحبي لحكك تتخيم أنت عددت شيباني 😂';
+            }
+        } else if (gender === 'female') {
+            if (age >= 18 && age <= 25) {
+                message = 'إنت مزلت بايره ايو الله يلطف خلي عنك تيك توك وتم عدل الغداء لأهلك';
+            } else if (age >= 25 && age <= 35) {
+                message = 'ي لال احمين واحمي جفتي إنت مافت تخيمتي 😂';
+            }
+        }
+
+        // Displaying user details with message
+        userMessage = `مرحباً ${fullName}!\n
+                        تم التسجيل بنجاح!\n
+                        معلوماتك:\n
+                        العمر: ${age}\n
+                        الهاتف: ${phone}\n
+                        مكان السكن: ${location}\n
+                        المواصفات التي تبحث عنها: ${description}\n`;
+
+        messageDiv.innerHTML = `<strong>تم التسجيل بنجاح!</strong><br><br>${userMessage}<br><br>${message}`;
+        messageDiv.classList.remove('error');
+        messageDiv.classList.add('success');
+        messageDiv.style.display = 'block';
+
+        // Reset the form after submission
+        form.reset();
+    });
+</script>
+
+</body>
+</html>
+ 
