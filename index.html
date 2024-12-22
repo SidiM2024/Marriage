@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة زواج شباب موريتاني</title>
-    <!-- إضافة مكتبة Font Awesome للأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -39,9 +38,23 @@
         h1 {
             color: #4CAF50;
             font-size: 22px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             font-weight: bold;
             animation: fadeIn 1.5s ease-out;
+        }
+
+        p.subtitle {
+            color: #444;
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        p.subtitle i {
+            margin-left: 8px;
+            color: #4CAF50;
         }
 
         label {
@@ -54,8 +67,8 @@
         input, select, textarea {
             width: 100%;
             padding: 12px;
-            margin-bottom: 12px;
-            border-radius: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
             border: 2px solid #ddd;
             font-size: 14px;
             transition: 0.3s;
@@ -137,8 +150,23 @@
                 padding: 15px;
                 max-width: 90%;
             }
+
             h1 {
                 font-size: 20px;
+            }
+
+            p.subtitle {
+                font-size: 12px;
+            }
+
+            input, select, textarea {
+                padding: 10px;
+                font-size: 12px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 10px;
             }
         }
     </style>
@@ -147,6 +175,10 @@
 
 <div class="container">
     <h1>منصة زواج شباب موريتاني</h1>
+    <p class="subtitle">
+        <span>تعرف على أفضل الفرص لبدء حياتك الزوجية بنجاح. </span><i class="fas fa-heart"></i>
+        <span>اجعل الخطوة الأولى نحو السعادة معنا!</span> <i class="fas fa-users"></i>
+    </p>
     <form id="registrationForm">
         <div class="input-wrapper">
             <label for="fullName">الأسم الكامل</label>
@@ -211,15 +243,15 @@
 
         if (gender === 'male') {
             if (age >= 18 && age <= 25) {
-                message = 'يوليدي وحل في راسك بني حياتك وحل في كرايتك مزال عند الوقت ما معجلك شيء على زواج';
+                message = 'أنت في أفضل سن لبداية حياة جديدة!';
             } else if (age >= 25 && age <= 35) {
-                message = 'أنت يصاحبي لحكك تتخيم أنت عددت شيباني 😂';
+                message = 'العمر ليس حاجزاً لبداية جديدة!';
             }
         } else if (gender === 'female') {
             if (age >= 18 && age <= 25) {
-                message = 'إنت مزلت بايره ايو الله يلطف خلي عنك تيك توك وتم عدل الغداء لأهلك';
+                message = 'أنت في أفضل سن لبداية حياة جديدة!';
             } else if (age >= 25 && age <= 35) {
-                message = 'ي لال احمين واحمي جفتي إنت مافت تخيمتي 😂';
+                message = 'العمر ليس حاجزاً لبداية جديدة!';
             }
         }
 
@@ -244,4 +276,3 @@
 
 </body>
 </html>
- 
